@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Gamedev Canvas Workshop</title>
+    <title>Bricks - Based on GameDevs</title>
     <style>
     	* { padding: 0; margin: 0; }
     	canvas { background: #eee; display: block; margin: 0 auto; }
@@ -13,11 +13,19 @@
 <canvas id="myCanvas" width="480" height="320"></canvas>
 
 <script>
+    //Setting up the canvas
 	var canvas = document.getElementById("myCanvas");
+    //Sets the canvas up into x and y plane
     var ctx = canvas.getContext("2d");
     
+    //This will draw to our canvas
     function draw() {
         // drawing code
+        ctx.beginPath();
+        ctx.arc(50,50,10,0, Math.PI*2);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        ctx.closePath();
     }
     setInterval(draw,10);
     
