@@ -16,27 +16,6 @@
 	var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     
-    //Add basic square/rectangle to the upper left of screen.
-    ctx.beginPath();
-    ctx.rect(20,20,50,50);
-    ctx.fillStyle = "#FF0000";
-    ctx.fill();
-    ctx.closePath();
-    
-    //Add circle to the center of the canvas
-    ctx.beginPath();
-    ctx.arc(240,160,20,0, Math.PI*2, false);
-    ctx.fillStyle = "green";
-    ctx.fill();
-    ctx.closePath();
-    
-    
-    //Add a rectangel to the middle top of the canvas with only an outline.
-    ctx.beginPath();
-    ctx.rect(160, 10, 100, 40);
-    ctx.strokeStyle = "rgba(0,0,255,.5)";
-    ctx.stroke();
-    ctx.closePath();
 </script>
 
 </body>
