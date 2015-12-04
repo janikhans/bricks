@@ -18,14 +18,25 @@
     //Sets the canvas up into x and y plane
     var ctx = canvas.getContext("2d");
     
+    //defining x and y coordinates
+    var x = canvas.width/2;
+    var y = canvas.height-30;
+    
+    //make it appear the ball is moving by this amount. Added on every iteration of the draw function
+    var dx = 2;
+    var dy = -2;
+    
     //This will draw to our canvas
     function draw() {
         // drawing code
+        ctx.clearRect(0,0, canvas.width, canvas.height);
         ctx.beginPath();
-        ctx.arc(50,50,10,0, Math.PI*2);
+        ctx.arc(x,y,10,0, Math.PI*2);
         ctx.fillStyle = "#0095DD";
         ctx.fill();
         ctx.closePath();
+        x += dx;
+        y += dy;
     }
     setInterval(draw,10);
     
