@@ -29,7 +29,7 @@
     //Setting up our paddle / platform
     var paddleHeight = 10;
     var paddleWidth = 75;
-    var paddleX = (canvas.width-paddleWidth)/2; // centers the paddle in the screen
+    var paddleX = (canvas.width-paddleWidth)/2; // relative horizontal space around paddle
     
     //variable to define ball radius to help with edge detection
     var ballRadius = 10;
@@ -72,9 +72,24 @@
             dx = -dx;
             ranColor();
         }
-        if (y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+        if (y + dy < ballRadius) {
             dy = -dy;
             ranColor();
+        } else if (y + dy > canvas.height-ballRadius ) {
+            if (x > paddleX && x < paddleX + paddleWidth) {
+                dy = -dy;
+//                dy += -1;
+//                dx += 1;
+            } else {
+            alert("GAME OVER!");
+            document.location.reload();
+            }
+        }
+        if (rightPressed && paddleX < canvas.width-paddleWidth) {
+            paddleX += 7;
+        }
+        if (leftPressed && paddleX > 0) {
+            paddleX += -7;
         }
     }
     //setup listeners for the keystrokes
