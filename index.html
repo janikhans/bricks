@@ -39,6 +39,40 @@
     var rightPressed = false;
     var leftPressed = false;
     
+    //setting up bricks
+    var brickRowCount = 3;
+    var brickColumnCount = 5;
+    var brickWidth = 75;
+    var brickHeight = 20;
+    var brickPadding = 10;
+    var brickOffsetTop = 30;
+    var brickOffsetLeft = 30;
+    
+    //an array to hold all the bricks and their locations
+    var bricks = [];
+    for ( c = 0; c < brickColumnCount; c++) {
+        bricks[c] = [];
+        for (r = 0; r < brickRowCount; r++) {
+            bricks[c][r] = { x:0, y: 0};
+        }
+    }
+    
+    function drawBricks() {
+        for ( c = 0; c < brickColumnCount; c++) {
+            for ( r = 0; r < brickRowCount; r++) {
+                var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+                var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+                bricks[c][r].x = 0;
+                bricks[c][r].y = 0;
+                ctx.beginPath();
+                ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                ctx.fillStyle = "#0095DD";
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+    }
+    
     //ball code, size color etc.
     function drawBall() {
         ctx.beginPath();
@@ -63,6 +97,7 @@
     //This will draw to our canvas
     function draw() {
         ctx.clearRect(0,0, canvas.width, canvas.height);
+        drawBricks();
         drawBall();
         drawPaddle();
         x += dx;
