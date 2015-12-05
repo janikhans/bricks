@@ -50,6 +50,9 @@
     
     //score! woohoo
     var score = 0;
+    
+    //And lives! more wohoo!
+    var lives = 3;
         
     //setup listeners for the keystrokes
     document.addEventListener("keydown", keyDownHandler, false);
@@ -101,6 +104,18 @@
         ctx.closePath();
     }
     
+    function drawScore() {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Score: " + score, 8, 20);
+    }
+    
+    function drawLives() {
+        ctx.font = "16px Arial";
+        ctx.fillstyle = "#0095DD";
+        ctx.fillText("Lives " + lives, canvas.width-65, 20);
+    }
+    
     function ranColor() {
         ballColor = '#'+Math.floor(Math.random()*16777215).toString(16);
     }
@@ -150,11 +165,6 @@
         }
     }
     
-    function drawScore() {
-        ctx.font = "16px Arial";
-        ctx.fillStyle = "#0095DD";
-        ctx.fillText("Score: " + score, 8, 20);
-    }
     
     //This will draw to our canvas
     function draw() {
@@ -163,6 +173,7 @@
         drawBall();
         drawPaddle();
         drawScore();
+        drawLives();
         collisionDetection();
         x += dx;
         y += dy;
@@ -178,8 +189,17 @@
 //                dy += -1;
 //                dx += 1;
             } else {
-            alert("GAME OVER! You scored " + score + " points.");
-            document.location.reload();
+                lives--;
+                if (!lives) {
+                    alert("GAME OVER! You scored " + score + " points.");
+                    document.location.reload();
+                } else {
+                    x = canvas.width/2;
+                    y = canvas.height-30;
+                    dx = 2;
+                    dy = -2;
+                    paddleX = (canvas.width-paddleWidth)/2;
+                }
             }
         }
         if (rightPressed && paddleX < canvas.width-paddleWidth) {
