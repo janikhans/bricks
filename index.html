@@ -54,6 +54,7 @@
     //setup listeners for the keystrokes
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
+    document.addEventListener("mousemove", mouseMoveHandler, false);
     
     
     //an array to hold all the bricks and their locations
@@ -118,6 +119,14 @@
             rightPressed = false;
         } else if (e.keyCode == 37) {
             leftPressed = false;
+        }
+    }
+    
+    //handler for mouse movements
+    function mouseMoveHandler(e) {
+        var relativeX = e.clientX - canvas.offsetLeft;
+        if(relativeX > 0 && relativeX < canvas.width) {
+            paddleX = relativeX - paddleWidth/2;
         }
     }
     
