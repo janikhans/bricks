@@ -28,7 +28,7 @@
     
     //Setting up our paddle / platform
     var paddleHeight = 10;
-    var paddleWidth = 75;
+    var paddleWidth = 70;
     var paddleX = (canvas.width-paddleWidth)/2; // relative horizontal space around paddle
     
     //variable to define ball radius to help with edge detection
@@ -48,6 +48,8 @@
     var brickOffsetTop = 30;
     var brickOffsetLeft = 30;
     
+    //score! woohoo
+    var score = 0;
         
     //setup listeners for the keystrokes
     document.addEventListener("keydown", keyDownHandler, false);
@@ -128,10 +130,21 @@
                         dy = -dy;
                         b.status = 0;
                         ranColor();
+                        score++;
+                        if ( score == brickColumnCount*brickRowCount) {
+                            alert("You win this awesome game!");
+                            document.location.reload();
+                        }
                     }
                 }
             }
         }
+    }
+    
+    function drawScore() {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Score: " + score, 8, 20);
     }
     
     //This will draw to our canvas
@@ -140,6 +153,7 @@
         drawBricks();
         drawBall();
         drawPaddle();
+        drawScore();
         collisionDetection();
         x += dx;
         y += dy;
