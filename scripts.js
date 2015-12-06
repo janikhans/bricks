@@ -18,15 +18,15 @@ var paddleX = (canvas.width-paddleWidth)/2; // relative horizontal space around 
 
 //variable to define ball radius to help with edge detection
 var ballRadius = 10;
-var ballColor = ranBallColor();
+var ballColor = ranColor();
 
 //setting up controls
 var rightPressed = false;
 var leftPressed = false;
 
 //setting up bricks
-var brickRowCount = 3;
-var brickColumnCount = 5;
+var brickRowCount = 4;
+var brickColumnCount = 7;
 var brickWidth = 75;
 var brickHeight = 20;
 var brickPadding = 10;
@@ -104,8 +104,8 @@ function drawLives() {
 }
 
 
-function ranBallColor() {
-    ballColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+function ranColor() {
+    return '#'+Math.floor(Math.random()*16777215).toString(16);
 }
 
 //the handlers for the keystrokes
@@ -141,7 +141,7 @@ function collisionDetection() {
                 if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                     dy = -dy;
                     b.status = 0;
-                    ranBallColor();
+                    ballColor = ranColor();
                     score++;
                     if ( score == brickColumnCount*brickRowCount) {
                         alert("You win this awesome game!");
